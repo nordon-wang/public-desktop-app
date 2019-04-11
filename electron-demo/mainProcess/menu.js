@@ -38,7 +38,7 @@ const template = [
     label:'格式',
     submenu:[
       {
-        label:'color',
+        label:'颜色',
         // accelerator:'F11',
         accelerator:(function(){
           // 判断操作系统
@@ -50,6 +50,7 @@ const template = [
         })(),
         click: function(){
           console.log('F11')
+          setColor()
         }
       },
       {
@@ -84,6 +85,7 @@ const menu = Menu.buildFromTemplate(template)
 Menu.setApplicationMenu(menu)
 
 
+// 展示关于页面
 function aboutWindow(){
   const win = new BrowserWindow({
     width:700,
@@ -94,5 +96,18 @@ function aboutWindow(){
   win.loadURL(path.join(__dirname, '../views/about.html'))
 
   // 设置当前窗体不显示菜单项
+  win.setMenu(null)
+}
+
+// 展示颜色选择页面
+function setColor() {
+  const win = new BrowserWindow({
+    width:400,
+    height:300,
+    title:"颜色选择"
+  })
+
+  win.loadURL(path.join(__dirname,'../views/color.html'))
+
   win.setMenu(null)
 }
